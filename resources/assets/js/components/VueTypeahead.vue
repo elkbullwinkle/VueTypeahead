@@ -56,7 +56,7 @@
 
       remoteAttrs : {
         type: Array,
-        default : [],
+        default : () => [],
       },
       placeholder: {
         type: String,

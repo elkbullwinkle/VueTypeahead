@@ -10620,7 +10620,7 @@ var Bloodhound = __webpack_require__(9);
 
     remoteAttrs: {
       type: Array,
-      default: []
+      default: () => []
     },
     placeholder: {
       type: String,
