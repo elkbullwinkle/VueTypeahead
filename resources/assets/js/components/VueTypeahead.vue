@@ -27,7 +27,7 @@
       },
       classes: {
         type: String,
-        default: ''
+        default: 'input'
       },
       displayKey: {
         type: String,
@@ -53,6 +53,11 @@
         type: String,
         default: ''
       },
+
+      remoteAttrs : {
+        type: Array,
+        default : [],
+      },
       placeholder: {
         type: String,
         default: ''
@@ -69,6 +74,11 @@
       }
     },
     watch:{
+
+      remoteAttrs() {
+        this.resetTypeahead()
+      },
+
       local: function(newVal) {
         if(this.defaultSuggestion) {
 
@@ -87,6 +97,21 @@
     },
 
     methods: {
+
+      buildRemoteUrl(url) {
+        if (this.remoteAttrs.length > 0)
+        {
+          var args = []
+          this.remoteAttrs.forEach(function(val, attr) {
+            args.push(attr + '=' + encodeURI(val))
+          })
+
+          url += '?' + args.join('&')
+        }
+
+        return url
+      },
+
       updateValue: function (value) {
         this.$emit('input', value)
       },
@@ -127,7 +152,7 @@
         if(this.remote) {
           bloodhoundConfig = {
             remote: {
-              url: this.remote,
+              url: this.buildRemoteUrl(this.remote),
               wildcard: '%QUERY',
               transform: this.transformer
             },
