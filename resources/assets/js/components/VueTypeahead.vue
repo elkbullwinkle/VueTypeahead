@@ -55,8 +55,8 @@
       },
 
       remoteAttrs : {
-        type: Array,
-        default : () => [],
+        type: Object,
+        default : () => {},
       },
       placeholder: {
         type: String,
@@ -99,16 +99,14 @@
     methods: {
 
       buildRemoteUrl(url) {
-        if (this.remoteAttrs.length > 0)
-        {
+        if (typeof this.remoteAttrs !== 'undefined' && Object.keys(this.remoteAttrs).length > 0) {
           var args = []
-          this.remoteAttrs.forEach(function(val, attr) {
-            args.push(attr + '=' + encodeURI(val))
-          })
+          for (let attr in this.remoteAttrs) {
+            args.push(attr + '=' + this.remoteAttrs[attr])
+          }
 
-          url += '?' + args.join('&')
+          url += '&' + args.join('&')
         }
-
         return url
       },
 
