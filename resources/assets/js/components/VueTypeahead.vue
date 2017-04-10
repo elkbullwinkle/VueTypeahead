@@ -9,6 +9,7 @@
           >
 </template>
 <script>
+  require('imports-loader?define=>false!typeahead.js/dist/typeahead.jquery.min.js');
   var Bloodhound = require('typeahead.js')
   export default {
     data: function() {
