@@ -9,8 +9,8 @@
           >
 </template>
 <script>
-  require('imports-loader?define=>false!typeahead.js/dist/typeahead.jquery.min.js');
-  var Bloodhound = require('imports-loader?define=>false!typeahead.js/dist/bloodhound.min.js');
+  require('imports-loader?define=>false!typeahead.js/dist/typeahead.jquery.js');
+  var Bloodhound = require('imports-loader?define=>false!typeahead.js/dist/bloodhound.js');
   export default {
     data: function() {
       var id =  'typeahead-suggestion' + parseInt(Math.random() *100000);
